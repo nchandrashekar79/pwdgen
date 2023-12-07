@@ -27,8 +27,13 @@
 				return pass;
 				}
 				
+		 
+				
 				
 			function generateChars(length){
+			
+			    let isCheck = false;
+				let isLengthAndCheck = false;
 				
 				let smallAlph='abcdefghijklmnopqrstuvwxyz0';
 				let capAlph='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -42,13 +47,24 @@
 				var isSpecialCharChecked = document.getElementById("SpecialCharCheck").checked;
 				
 				
+		  
+			   if(isabcChecked || isABCChecked || isNumChecked || isSpecialCharChecked){
+			   
+			   isCheck =  true;
+			   isLengthAndCheck = false
+
+			  }
+			  
+				
 				if(isNaN(length) || length < 0){
 				  alert("Input valid password length");
 				}
+				
+				if(!isCheck){
+				  alert("Select any  Characters used:");
+				}
 			
-				//if(!isabcChecked && !isABCChecked && !isNumChecked || !isSpecialCharChecked){
-				 //alert("Select any  Characters used:");
-				//}
+
 				if(isabcChecked){
 				 str=str+smallAlph;
 				}
@@ -73,6 +89,7 @@
 	</head>
 	<body>
 	<h2>Password Generator </h2>
+	<h4 style="color:#069">Input Password length and  Select one Characters used: </h4>
 	<br>
 		<label>Password length:</label>
 		<input id="length" name="text"><br>
