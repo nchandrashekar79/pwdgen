@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Password Generator</title>
+		<script type="text/javascript">
+
+			function generateRandomNumber(){
+				var length = parseInt(document.getElementById('length').value);
+				
+				
+				//document.getElementById('display').innerText = length;
+				
+				document.getElementById('display').innerText = generatePass();
+			}
+			
+			function generatePass() {
+				let pass = '';
+				let smallAlph='abcdefghijklmnopqrstuvwxyz0';
+				let capAlph='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				let numbers='1234567890';
+				let str =  smallAlph+capAlph+numbers+
+					'@#$';
+			 
+				for (let i = 1; i <= 8; i++) {
+					let char = Math.floor(Math.random()
+						* str.length + 1);
+			 
+					pass += str.charAt(char)
+				}
+				return pass;
+				}
+				
+		function generatePassCutom() {
+				let pass = '';
+				let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+					'abcdefghijklmnopqrstuvwxyz0123456789@#$';
+			 
+				for (let i = 1; i <= 8; i++) {
+					let char = Math.floor(Math.random()
+						* str.length + 1);
+			 
+					pass += str.charAt(char)
+				}
+ 
+		return pass;
+	}
+		</script>
+	</head>
+	<body>
+	<h2>Password Generator </h2>
+	<br>
+		<label>Password length:</label>
+		<input id="length" name="text"><br>
+		<label>Characters used:</label>
+		
+		<input type="checkbox" id="abcCheck" name="abcCheck" value="abc">
+	    <label for="abcCheck"> abc</label>
+	    <input type="checkbox" id="ABCCheck" name="ABCCheck" value="ABC">
+	    <label for="ABCCheck"> ABC</label>
+		
+		<input type="checkbox" id="123Check" name="123Check" value="123">
+	    <label for="123Check"> 123</label><br><br>
+  
+  
+		<button onclick="generateRandomNumber();">Generate</button>
+		<div id="display" style="font-size: 60px;"></div>
+	</body>
+</html>
