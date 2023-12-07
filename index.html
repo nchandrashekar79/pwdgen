@@ -4,43 +4,19 @@
 		<title>Password Generator</title>
 		<script type="text/javascript">
 
-			function generateRandomNumber(){
-				
-				//alert("Input Password length");
+			function generate(){
 				
 				
-				
-              document.getElementById('display').innerText = generatePass();
+              document.getElementById('display').innerText = randomStr();
 			}
 			
-			function generatePass() {
+			function randomStr() {
 				let pass = '';
-				let smallAlph='abcdefghijklmnopqrstuvwxyz0';
-				let capAlph='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				let numbers='1234567890';
-				let symbols='@#$';
 				
-				let str='';
-				var isabcChecked = document.getElementById("abcCheck").checked;
-				var isABCChecked = document.getElementById("ABCCheck").checked;
-				var isNumChecked = document.getElementById("123Check").checked;
-				console.log('isabcChecked: ' +isabcChecked);
-				console.log('isABCChecked: ' +isABCChecked);
-				console.log('isNumChecked: ' +isNumChecked);
+				var length = parseInt(document.getElementById('length').value);
 				
-				if(isabcChecked){
-				 str=str+smallAlph;
-				}
-				
-				if(isABCChecked){
-				 str=str+isABCChecked;
-				}
-				
-				if(isNumChecked){
-				 str=str+isNumChecked;
-				}
-				
-			var length = parseInt(document.getElementById('length').value);
+				let str = generateChars(length);		
+			
 			 
 				for (let i = 1; i <= length; i++) {
 					let char = Math.floor(Math.random()
@@ -49,6 +25,48 @@
 					pass += str.charAt(char)
 				}
 				return pass;
+				}
+				
+				
+			function generateChars(length){
+				
+				let smallAlph='abcdefghijklmnopqrstuvwxyz0';
+				let capAlph='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				let numbers='1234567890';
+				let symbols='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+				
+				let str='';
+				var isabcChecked = document.getElementById("abcCheck").checked;
+				var isABCChecked = document.getElementById("ABCCheck").checked;
+				var isNumChecked = document.getElementById("123Check").checked;
+				var isSpecialCharChecked = document.getElementById("SpecialCharCheck").checked;
+				
+				
+				if(isNaN(length) || length < 0){
+				  alert("Input valid password length");
+				}
+			
+				//if(!isabcChecked && !isABCChecked && !isNumChecked || !isSpecialCharChecked){
+				 //alert("Select any  Characters used:");
+				//}
+				if(isabcChecked){
+				 str=str+smallAlph;
+				}
+				
+				if(isABCChecked){
+				 str=str+capAlph;
+				}
+				
+				if(isNumChecked){
+				 str=str+numbers;
+				}
+				
+				if(isSpecialCharChecked){
+				 str=str+symbols;
+				}
+				
+				return str;
+				
 				}
 				
 		</script>
@@ -66,10 +84,13 @@
 	    <label for="ABCCheck"> ABC</label>
 		
 		<input type="checkbox" id="123Check" name="123Check" value="123">
-	    <label for="123Check"> 123</label><br><br>
+	    <label for="123Check"> 123</label>
+		
+		<input type="checkbox" id="SpecialCharCheck" name="SpecialCharCheck" value="SpecialCharCheck">
+	    <label for="SpecialCharCheck"> SpecialChar</label><br><br>
   
   
-		<button onclick="generateRandomNumber();">Generate</button>
+		<button onclick="generate();">Generate</button>
 		<div id="display" style="font-size: 60px;"></div>
 	</body>
 </html>
