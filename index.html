@@ -5,12 +5,12 @@
 		<script type="text/javascript">
 
 			function generateRandomNumber(){
-				var length = parseInt(document.getElementById('length').value);
+				
+				//alert("Input Password length");
 				
 				
-				//document.getElementById('display').innerText = length;
 				
-				document.getElementById('display').innerText = generatePass();
+              document.getElementById('display').innerText = generatePass();
 			}
 			
 			function generatePass() {
@@ -18,10 +18,31 @@
 				let smallAlph='abcdefghijklmnopqrstuvwxyz0';
 				let capAlph='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				let numbers='1234567890';
-				let str =  smallAlph+capAlph+numbers+
-					'@#$';
+				let symbols='@#$';
+				
+				let str='';
+				var isabcChecked = document.getElementById("abcCheck").checked;
+				var isABCChecked = document.getElementById("ABCCheck").checked;
+				var isNumChecked = document.getElementById("123Check").checked;
+				console.log('isabcChecked: ' +isabcChecked);
+				console.log('isABCChecked: ' +isABCChecked);
+				console.log('isNumChecked: ' +isNumChecked);
+				
+				if(isabcChecked){
+				 str=str+smallAlph;
+				}
+				
+				if(isABCChecked){
+				 str=str+isABCChecked;
+				}
+				
+				if(isNumChecked){
+				 str=str+isNumChecked;
+				}
+				
+			var length = parseInt(document.getElementById('length').value);
 			 
-				for (let i = 1; i <= 8; i++) {
+				for (let i = 1; i <= length; i++) {
 					let char = Math.floor(Math.random()
 						* str.length + 1);
 			 
@@ -30,20 +51,6 @@
 				return pass;
 				}
 				
-		function generatePassCutom() {
-				let pass = '';
-				let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-					'abcdefghijklmnopqrstuvwxyz0123456789@#$';
-			 
-				for (let i = 1; i <= 8; i++) {
-					let char = Math.floor(Math.random()
-						* str.length + 1);
-			 
-					pass += str.charAt(char)
-				}
- 
-		return pass;
-	}
 		</script>
 	</head>
 	<body>
